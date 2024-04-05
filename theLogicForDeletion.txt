@@ -1,0 +1,15 @@
+This part is a bit trickier. Imagine adding a new car in the middle of the train, but you can only reach it by going through the existing cars. Here's what it does:
+
+It first calls the length function to find the total number of cars in the train (size).
+It checks if the position you entered to add the car is valid (between 1 and the total number of cars + 1). If not, it prints an error message and returns the head (without any changes).
+It creates a new train car (newNode) with the information (data).
+If you want to add at the very front (position == 1), it behaves just like insertAtBegining.
+Otherwise, it uses two pointers:
+previous: This points to the car right before the position where you want to add the new car.
+current: This points to the car that will be after the new car.
+It uses a loop (while) to move the previous pointer to the car before the desired position:
+It starts a counter (count) at 1 and keeps moving previous to the next car (previous.next) until count reaches position-1 (one less than the desired position).
+Now, previous points to the car before the insertion point, and current points to the car that will be after the new car.
+It connects the new car (newNode) to the existing train by setting newNode.next to current.
+Finally, it connects the car before (previous) to the new car by setting previous.next to newNode.
+It returns the head (even though we added in the middle, the head remains the front).
