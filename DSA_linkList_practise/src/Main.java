@@ -1,7 +1,3 @@
-import org.w3c.dom.ls.LSOutput;
-
-import java.util.List;
-
 public class Main {
 
     public static Node head; // head node holds the list
