@@ -3,7 +3,6 @@ public class Main {
     public static Node head; // head node holds the list
 
     public static class Node {
- 
         int nodeValue;
         Node nextNodeReferencePointer;
 
