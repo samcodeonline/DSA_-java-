@@ -11,7 +11,6 @@ public class Main {
             this.nodeValue = nodeValue;
             this.nextNodeReferencePointer = null;
         }
-
         public static int length(Node head) {
             // if the linkedList is empty
             if (head == null)
@@ -63,40 +62,42 @@ public class Main {
                 newNode.nextNodeReferencePointer = head;
                 return newNode;
             } else {
-                Node previousPointer = head;
+                Node previousNode = head;
                 int count = 1;
                 while(count < position - 1) {
-                    previousPointer = previousPointer.nextNodeReferencePointer;
+                    previousNode = previousNode.nextNodeReferencePointer;
                     count++;
                 }
-                Node currentPointer = previousPointer.nextNodeReferencePointer;
+                Node currentPointer = previousNode.nextNodeReferencePointer;
                 newNode.nextNodeReferencePointer = currentPointer;
-                previousPointer.nextNodeReferencePointer = newNode;
+                previousNode.nextNodeReferencePointer = newNode;
             }
             return head;
         }
 
-        public static Node deleteAtPosition(Node head, int nodeValue, int position){
+        public static Node deleteAtPosition(Node head, int position) {
             int size = length(head);
             // check boundary conditions
-            if(position > size+1 || position<1) {
+            if (position > size + 1 || position < 1) {
                 System.out.println("Invalid position");
                 return head;
             }
-            Node newNode = new Node(nodeValue);
-            if(position == 1) {
-                newNode.nextNodeReferencePointer = null;
-                newNode = head;
-                return newNode;
-            }
 
-            else {
-                Node previousPointer = null;
+//            Node deleteNode  = new Node(position);
+            if (position == 1) {
+                Node firstNode = head;
+                Node secondNode = firstNode.nextNodeReferencePointer;
+                return secondNode;
+            } else {
                 int count = 1;
+                Node firstNode = head;
                 while(count < position - 1) {
-                    previousPointer = null;
+                    firstNode = firstNode.nextNodeReferencePointer;
                     count++;
                 }
+                Node secondNode = firstNode.nextNodeReferencePointer;
+                firstNode.nextNodeReferencePointer = secondNode.nextNodeReferencePointer;
+                secondNode.nextNodeReferencePointer = null;
             }
             return head;
         }
@@ -119,18 +120,32 @@ public class Main {
             head=insertAtBegining(head,2);
             head=insertAtBegining(head,3);
             head=insertAtBegining(head,4);
+            head=insertAtBegining(head,7);
+            head=insertAtBegining(head,2);
+
+
             display(head);
             // insert from end
             System.out.println("Inserting from end");
             head = insertAtEnd(head,5);
             head = insertAtEnd(head,6);
+            head = insertAtEnd(head,5);
+            head = insertAtEnd(head,1);
+            head = insertAtEnd(head,0);
+
             display(head);
             // insert at a position
             System.out.println("Insert at position 3");
             head = insertAtPosition(head,7,3);
             display(head);
-            System.out.println("Delete at position 1");
-            head = deleteAtPosition(head,4,1);
+            System.out.println("Delete from position 1");
+            head = deleteAtPosition(head,1);
+            display(head);
+            System.out.println("Delete from position 5");
+            head = deleteAtPosition(head,5);
+            display(head);
+            System.out.println("Delete from position 7");
+            head = deleteAtPosition(head,7);
             display(head);
             // length of the linked list
             int l = length(head);
