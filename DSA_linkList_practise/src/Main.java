@@ -122,7 +122,6 @@ public class Main {
             head=insertAtBegining(head,7);
             head=insertAtBegining(head,2);
 
-
             display(head);
             // insert from end
             System.out.println("Inserting from end");
@@ -133,6 +132,9 @@ public class Main {
             head = insertAtEnd(head,0);
 
             display(head);
+
+
+
             // insert at a position
             System.out.println("Insert at position 3");
             head = insertAtPosition(head,7,3);
