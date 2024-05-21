@@ -72,19 +72,15 @@ public class LinkedList {
     {
         // Store head node
         Node currNode = list.head, prev = null;
-
         if (currNode != null && currNode.data == key) {
             list.head = currNode.next; // Changed head
-
             // Display the message
             System.out.println(key + " found and deleted");
-
             // Return the updated List
             return list;
         }
 
         while (currNode != null && currNode.data != key) {
-
             prev = currNode;
             currNode = currNode.next;
         }
