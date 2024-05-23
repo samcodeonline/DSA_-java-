@@ -89,6 +89,7 @@ public class Main extends LL {
                         System.out.print("Position: ");
                         position = newScanner.nextInt();
                         try{
+                            System.out.println("Deleted SuccessFully");
                             newList.delete(position);
                         }catch(Exception e){
                             System.out.println(e.getLocalizedMessage());
