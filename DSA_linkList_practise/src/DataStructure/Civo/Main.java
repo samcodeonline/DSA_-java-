@@ -2,27 +2,25 @@ package DataStructure.Civo;
 
 import DataStructure.LinkedListPractise.practiseLinkedList;
 
+import java.io.IOException;
 import java.util.Scanner;
-import java.util.Stack;
 
-
-
-public class Main {
+public class Main extends LL {
     public static void menu(){
         System.out.println("");
-        System.out.println("1. Insert At First Position ");
-        System.out.println("2. Display List ");
-        System.out.println("3. Insert At last Position ");
+        System.out.println("1. Insert At Head ");
+        System.out.println("2. Display");
+        System.out.println("3. Insert At Tail ");
         System.out.println("4. End Program ");
         System.out.println("5. Insert At Any Position ");
         System.out.println("6. Delete the Item ");
-        System.out.println("7. Undo Last Item ");
+        System.out.println("7. Undo Last Item Deleted ");
+        System.out.println("8. Garbage Bin");
     }
     public static void main(String[] args) {
-// Stack to keep track of deletions
-//        Stack<DeletedNode> undoStack = new Stack<>();
         LL newList = new LL();
         while(true){
+//            clearScreen();
             menu();
             System.out.println("");
             System.out.print("Choose the options: ");
@@ -37,7 +35,12 @@ public class Main {
                     for(int i = 0 ; i < insertion; i++){
                         int num;
                         num = newScanner.nextInt();
-                        newList.insertFirst(num);
+                        try{
+                            newList.insertFirst(num);
+                        }catch(Exception e){
+                            System.out.println(e.getLocalizedMessage());
+                        }
+
                     }
                     break;
                 case 2:
@@ -51,7 +54,11 @@ public class Main {
                     for(int i = 0 ; i < insertLast; i++){
                         int num;
                         num = newScanner.nextInt();
-                        newList.insertFirst(num);
+                        try{
+                            newList.insertLast(num);
+                        }catch(Exception e){
+                            System.out.println(e.getLocalizedMessage());
+                        }
                     }
                     break;
                 case 4:
@@ -66,18 +73,40 @@ public class Main {
                         num = newScanner.nextInt();
                         System.out.print("Position: ");
                         position = newScanner.nextInt();
-                        newList.insert(num,position);
+                        try{
+                            newList.insert(num,position);
+                        }catch(Exception e){
+                            System.out.println(e.getLocalizedMessage());
+                        }
                     }
                     break;
                 case 6:
                     System.out.print("Count: ");
-                    int deleteRandomly;
-                    deleteRandomly = newScanner.nextInt();
-                    for(int i = 0 ; i < deleteRandomly; i++) {
+                    int deletion;
+                    deletion = newScanner.nextInt();
+                    for(int i = 0 ; i < deletion; i++) {
                         int position;
                         System.out.print("Position: ");
                         position = newScanner.nextInt();
-                        newList.delete(position);
+                        try{
+                            newList.delete(position);
+                        }catch(Exception e){
+                            System.out.println(e.getLocalizedMessage());
+                        }
+                    }
+                    break;
+                case 7:
+                    try{
+                        newList.insertLast(newList.undoDelete());
+                    }catch (Exception e){
+                        System.out.println(e.getLocalizedMessage());
+                    }
+                    break;
+                case 8:
+                    try{
+                        newList.garbageBin();
+                    }catch (Exception e){
+                        System.out.println(e.getLocalizedMessage());
                     }
                     break;
                 default:

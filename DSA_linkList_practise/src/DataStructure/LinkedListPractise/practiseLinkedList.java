@@ -53,7 +53,7 @@ public class practiseLinkedList {
     }
 
     // Helper class to store the deleted node information
-    static class DeletedNode {
+    public static class DeletedNode {
         int value;
         int index;
 

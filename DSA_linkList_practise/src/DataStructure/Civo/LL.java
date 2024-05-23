@@ -1,11 +1,13 @@
 package DataStructure.Civo;
 
-public class LL extends StackImplement {
+public class LL {
 
     private Node head;
     private Node tail;
     private int size;
 
+    Stacks myStack = new Stacks();
+//    LL myList = new LL();
     public LL(){
         this.size = 0;
     }
@@ -21,15 +23,16 @@ public class LL extends StackImplement {
         size += 1;
     }
 
-    public void insertLast(int val){
+    public int insertLast(int val){
         if(tail == null){
             insertFirst(val);
-            return;
+            return val;
         }
         Node node = new Node(val);
         tail.next = node ;
         tail = node;
         size ++;
+        return val;
     }
 
     public void insert(int val , int index){
@@ -98,16 +101,44 @@ public class LL extends StackImplement {
         if(index == 0){
             return deleteFirst();
         }
+
         if(index == size - 1){
             return deleteLast();
         }
+
+
         Node prev = get(index - 1);
 
         int val = prev.next.value;
 
         prev.next = prev.next.next;
 
+        myStack.push(val);
+
         return val;
+
+    }
+
+    public int undoDelete(){
+
+        if(myStack.isEmpty()){
+            System.out.println("nothing to undo");
+            return 0;
+        }
+        System.out.println("UNDO Completed");
+        int value = myStack.pop();
+//        System.out.println(value);
+        return value;
+    }
+
+    public void garbageBin(){
+        if(myStack.isEmpty()){
+            System.out.println("Nothing in the stack.");
+        }
+//        if(!myStack.isEmpty()){
+            System.out.print("Inside Garbage Bin : ");
+            System.out.print(myStack.size());
+//        }
     }
 
     public void display(){
@@ -126,15 +157,9 @@ public class LL extends StackImplement {
         public Node(int value) {
             this.value = value;
         }
-
         public Node(int value, Node next) {
             this.value = value;
             this.next = next;
         }
-
-        public Node() {
-
-        }
     }
-
 }
